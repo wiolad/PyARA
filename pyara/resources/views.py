@@ -5,3 +5,9 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'resources/index.html')
 #    return HttpResponse('Welcome to PyARA - Python Amazing Resources App!')
+
+def questions(request):
+    return render(request, 'resources/questions.html')
+
+def single_question(request):
+    return render(request, 'resources/single.html')
