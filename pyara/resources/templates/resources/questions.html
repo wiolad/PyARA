@@ -1,12 +1,7 @@
+{% extends 'resources/base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'resources/styles/base.css' %}">
-    <title></title>
-  </head>
-  <body>
-  <p>List of questions below!</p>
-  </body>
-</html>
+
+<div class="page-header">{% block title %} Questions! {% endblock %}</div>
+
+{% block main_heading %} List of questions below {% endblock %}

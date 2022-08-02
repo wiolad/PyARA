@@ -1,12 +1,18 @@
+{% extends 'resources/base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'resources/styles/base.css' %}">
-    <title></title>
-  </head>
-  <body>
-  <p>Welcome to PyARA - Python Amazing Resources App!</p>
-  </body>
-</html>
+
+{% block title %}Questions{% endblock %}
+
+{% block header_content %}
+<h4>All Python interview questions in one place</h4>
+{% endblock %}
+
+{% block body %}
+  <div class="list-group center-block">
+    <a href="/questions" class="list-group-item list-group-item-action">See our questions!</a>
+        <a href="/questions" class="list-group-item list-group-item-action list-group-item-success">First!</a>
+        <a href="/questions" class="list-group-item list-group-item-action list-group-item-success">Second!</a>
+        <a href="/questions" class="list-group-item list-group-item-action list-group-item-success">Last!</a>
+  </div>
+{% endblock %}
