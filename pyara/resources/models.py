@@ -20,6 +20,32 @@ class Answear(models.Model):
         return f'{self.slug} - {self.author}'
 
 class Question(models.Model):
+    GENERAL = 'GEN'
+    LIST = 'LIS'
+    DICTIONARIE = 'DIC'
+    STRING = 'STR'
+    TUPLE = 'TUP'
+    SET = 'SET'
+    FUNCTION = 'FUN'
+    OOP = 'OOP'
+    FILE = 'FIL'
+    ALGORITHM = 'ALG'
+    SUBJECT_CHOICES = [
+        (GENERAL, 'General'),
+        (LIST, 'Lists'),
+        (DICTIONARIE, 'Dictionaries'),
+        (STRING, 'Strings'),
+        (TUPLE, 'Tuples'),
+        (SET, 'Sets'),
+        (FUNCTION, 'Functions'),
+        (OOP, 'Object Oriented Programming'),
+        (FILE, 'Files handling'),
+        (ALGORITHM, 'Algorithms'),
+    ]
+    subject = models.CharField(
+        max_length = 3,
+        choices = SUBJECT_CHOICES,
+        default = GENERAL)
     title = models.CharField(max_length=200)
     date=models.DateField()
     slug = models.SlugField(unique=True)
