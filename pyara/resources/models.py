@@ -10,7 +10,6 @@ class User(models.Model):
 
 class Answear(models.Model):
     date=models.DateField()
-    slug = models.SlugField(unique=True)
     answear = models.TextField()
     source = models.URLField()
 #    drawing = models.ImageField(upload_to='drawings')
@@ -21,22 +20,16 @@ class Answear(models.Model):
 
 class Question(models.Model):
     GENERAL = 'GEN'
-    LIST = 'LIS'
-    DICTIONARIE = 'DIC'
-    STRING = 'STR'
-    TUPLE = 'TUP'
-    SET = 'SET'
+    BASIC = 'BAS'
+    COLLECTIONS = 'COL'
     FUNCTION = 'FUN'
     OOP = 'OOP'
     FILE = 'FIL'
     ALGORITHM = 'ALG'
     SUBJECT_CHOICES = [
-        (GENERAL, 'General'),
-        (LIST, 'Lists'),
-        (DICTIONARIE, 'Dictionaries'),
-        (STRING, 'Strings'),
-        (TUPLE, 'Tuples'),
-        (SET, 'Sets'),
+        (GENERAL, 'General information'),
+        (BASIC, 'Basic data types and syntax'),
+        (COLLECTIONS, 'Built-in data types used to store collections of data'),
         (FUNCTION, 'Functions'),
         (OOP, 'Object Oriented Programming'),
         (FILE, 'Files handling'),
@@ -46,6 +39,7 @@ class Question(models.Model):
         max_length = 3,
         choices = SUBJECT_CHOICES,
         default = GENERAL)
+
     title = models.CharField(max_length=200)
     date=models.DateField()
     slug = models.SlugField(unique=True)
