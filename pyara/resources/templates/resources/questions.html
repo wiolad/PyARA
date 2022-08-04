@@ -5,3 +5,16 @@
 <div class="page-header">{% block title %} Questions! {% endblock %}</div>
 
 {% block main_heading %} List of questions below {% endblock %}
+
+{% block body %}
+  <div class="list-group center-block">
+    <h5>Questions:</h5>
+        {% for item in questions %}
+         <h6>{{ item.title }}</h6>
+         <details>
+           <summary>Show answear</summary>
+           {{ item.answear }}
+         </details>
+        {% endfor %}
+  </div>
+{% endblock %}

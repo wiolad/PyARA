@@ -10,9 +10,9 @@
 
 {% block body %}
   <div class="list-group center-block">
-    <a href="/questions" class="list-group-item list-group-item-action">See our questions!</a>
-        <a href="/questions" class="list-group-item list-group-item-action list-group-item-success">First!</a>
-        <a href="/questions" class="list-group-item list-group-item-action list-group-item-success">Second!</a>
-        <a href="/questions" class="list-group-item list-group-item-action list-group-item-success">Last!</a>
+    <h5><a href="/questions" class="list-group-item list-group-item-action">Sections:</a></h5>
+        {% for item in questions.0.SUBJECT_CHOICES %}
+        <a href="{% url 'questions-list' item.0 %}" class="list-group-item list-group-item-action list-group-item-success">{{ item.1 }}</a>
+        {% endfor %}
   </div>
 {% endblock %}

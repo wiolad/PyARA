@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns=[
 path('', views.index),
-path('questions/', views.questions),
-path('questions/<slug:question_slug>',views.single_question)
+path('questions/<question_subject>', views.questions, name='questions-list'),
+#path('questions/<slug:question_slug>',views.single_question)
 ]

@@ -16,7 +16,7 @@ class Answear(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.slug} - {self.author}'
+        return f'{self.answear}'
 
 class Question(models.Model):
     GENERAL = 'GEN'
