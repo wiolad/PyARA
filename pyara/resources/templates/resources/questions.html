@@ -23,9 +23,7 @@
   <h4> Add new question below:</h4>
   <form class="form-group" method="POST">
     {% csrf_token %}
-    <ul>
-      {{ form.as_ul }}
-    </ul>
+    {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>

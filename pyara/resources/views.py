@@ -24,7 +24,8 @@ def questions(request, question_subject):
             source = question_form.cleaned_data['source']
             author = question_form.cleaned_data['author']
             subject = question_form.cleaned_data['subject']
-            question, _ = Question.objects.get_or_create(title=title, source=source, author=author, subject = subject)
+            answear = question_form.cleaned_data['answear']
+            question, _ = Question.objects.get_or_create(title=title, source=source, author=author, subject = subject, answear = answear)
         else:
             print("NOT VALID")
 
