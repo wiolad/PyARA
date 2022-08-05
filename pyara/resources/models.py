@@ -41,7 +41,7 @@ class Question(models.Model):
         default = GENERAL)
 
     title = models.CharField(max_length=200)
-    date=models.DateField()
+    date=models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True)
     source = models.URLField()
     answear = models.ForeignKey(Answear, blank=True, null=True, on_delete=models.SET_NULL)

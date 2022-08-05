@@ -2,26 +2,31 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 <div class="page-header">{% block title %} Questions! {% endblock %}</div>
 
 {% block main_heading %} List of questions below {% endblock %}
 
 {% block body %}
   <div class="list-group center-block">
-    <h5>Questions:</h5>
+    <h4>Questions:</h4>
         {% for item in questions %}
+        <p>
          <h6>{{ item.title }}</h6>
          <details>
            <summary>Show answear</summary>
            {{ item.answear }}
          </details>
+         </p>
         {% endfor %}
+  <h4> Add new question below:</h4>
   <form class="form-group" method="POST">
     {% csrf_token %}
     <ul>
       {{ form.as_ul }}
     </ul>
-    <button type="button" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>
 {% endblock %}
