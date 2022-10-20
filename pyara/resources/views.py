@@ -1,7 +1,7 @@
 from django.shortcuts import render
 #from django.http import HttpResponse
 
-from .models import Question
+from .models import Question, Answer
 
 from .forms import QuestionForm
 
@@ -15,30 +15,38 @@ def index(request):
 
 def questions(request, question_subject):
     selected_subject = Question.objects.filter(subject=question_subject)
+    selected_answers = Answer.objects.all()
     if request.method == "GET":
         question_form = QuestionForm()
     else:
         question_form = QuestionForm(request.POST)
+#        AnswerFormSet = inlineformset_factory(Question, Answer, fields=('answer','date'))
         if question_form.is_valid():
             title = question_form.cleaned_data['title']
             source = question_form.cleaned_data['source']
             author = question_form.cleaned_data['author']
             subject = question_form.cleaned_data['subject']
-            answear = question_form.cleaned_data['answear']
-            question, _ = Question.objects.get_or_create(title=title, source=source, author=author, subject = subject, answear = answear)
+            question, _ = Question.objects.get_or_create(title=title, source=source, author=author, subject = subject)
         else:
             print("NOT VALID")
 
-#        if registration_form.is_valid():
-#            user_email = registration_form.cleaned_data['email']
-#            participant, _ = Participant.objects.get_or_create(email=user_email)
-#            selected_meetup.participants.add(participant)
-#            return redirect('confirm-registration', meetup_slug=meetup_slug)
-
     return render(request, 'resources/questions.html',{
             'questions': selected_subject,
+            'answers': selected_answers,
             'form': question_form,
             })
+
+#def answer(request, question_id):
+#    """
+#    Get and add answers to a question
+#    """
+#    selected_answers = Question.objects.filter(question=question_id)
+#    answer_form = AnswearForm()
+#    return render(request, 'resources/questions.html',{
+#            'answers': selected_answers,
+#            'form': answer_form,
+#            })
+
 
 def single_question(request):
     return render(request, 'resources/single.html')

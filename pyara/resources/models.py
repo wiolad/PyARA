@@ -8,16 +8,6 @@ class User(models.Model):
     def __str__(self):
         return self.email
 
-class Answear(models.Model):
-    date=models.DateField()
-    answear = models.TextField()
-    source = models.URLField()
-#    drawing = models.ImageField(upload_to='drawings')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.answear}'
-
 class Question(models.Model):
     GENERAL = 'GEN'
     BASIC = 'BAS'
@@ -36,16 +26,27 @@ class Question(models.Model):
         (ALGORITHM, 'Algorithms'),
     ]
     subject = models.CharField(
-        max_length = 3,
-        choices = SUBJECT_CHOICES,
-        default = GENERAL)
+        max_length=3,
+        choices=SUBJECT_CHOICES,
+        default=GENERAL)
 
     title = models.CharField(max_length=200)
-    date=models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True)
     source = models.URLField()
-    answear = models.ForeignKey(Answear, blank=True, null=True, on_delete=models.SET_NULL)
     author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.title}'
+
+
+class Answer(models.Model):
+    date = models.DateField()
+    answer = models.TextField()
+    source = models.URLField()
+#    drawing = models.ImageField(upload_to='drawings')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, blank=True, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f'{self.answer}'
