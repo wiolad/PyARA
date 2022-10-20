@@ -6,25 +6,28 @@
 
 <div class="page-header">{% block title %} Questions! {% endblock %}</div>
 
-{% block main_heading %} List of questions below {% endblock %}
-
-{% block body %}
+{% block body_left %}
   <div class="list-group center-block">
-    <h4>Questions:</h4>
+    <h5>Questions:</h5>
         {% for item in questions %}
         <p>
          <h6>{{ item.title }}</h6>
-         <details>
-           <summary>Show answear</summary>
-           {{ item.answear }}
-         </details>
-         </p>
+         {% for ans in answers %}
+          {% if item.id == ans.question.id %}
+            <details>
+              <summary>Show answer</summary>
+              <p>{{ ans.answer }}</p>
+            </details>
+          {% endif %}
+         {% endfor %}
         {% endfor %}
-  <h4> Add new question below:</h4>
-  <form class="form-group" method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
   </div>
-{% endblock %}
+  {% endblock %}
+  {% block body_right %}
+      <h5> Add new question:</h5>
+      <form class="form-group" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  {% endblock %}

@@ -4,15 +4,31 @@
 
 {% block title %}Questions{% endblock %}
 
-{% block header_content %}
-<h4>All Python interview questions in one place</h4>
-{% endblock %}
-
-{% block body %}
+{% block body_left %}
   <div class="list-group center-block">
-    <h5><a href="/questions" class="list-group-item list-group-item-action">Sections:</a></h5>
+    <h5><a href="resources/questions" class="list-group-item list-group-item-action">Sections:</a></h5>
         {% for item in questions.0.SUBJECT_CHOICES %}
-        <a href="{% url 'questions-list' item.0 %}" class="list-group-item list-group-item-action list-group-item-success">{{ item.1 }}</a>
+        <a href="{% url 'questions-list' item.0 %}" class="list-group-item list-group-item-action list-group-item-primary">{{ item.1 }}</a>
         {% endfor %}
   </div>
+{% endblock %}
+
+{% block body_right %}
+    <h2>Welcome to PyARA</h2>
+    <p>This is a Django based project that helps me to keep track of my preparation for python developer interview such as:</p>
+    <ul>
+        <li>Questions and answers for job interviews</li>
+        <li>Common python interview tasks</li>
+        <li>Test my knowledge - prepare a test from available questions</li>
+    </ul>
+    <p>Example code in python:</p>
+    <pre>
+    favorites = ['Creme Brulee', 'Apple Pie', 'Churros', 'Tiramisú', 'Chocolate Cake']
+
+    count = 0
+
+    while count < len(favorites):
+        print('One of my favorite desserts is', favorites[count]);
+        count += 1
+    </pre>
 {% endblock %}

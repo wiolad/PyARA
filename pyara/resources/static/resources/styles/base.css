@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap');
 
 h1, h4 {
-    color: #ab8149;
+    color: #F9FCFF;
 }
 
 body {
-    background-color: #fbf9f6;
+    background-color: #F9FCFF;
   }
+
+#header_main {
+    height: 200px;
+    border-radius: 20px;
+    background-position: center center;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#footer {
+    margin-top: 30px;
+}
