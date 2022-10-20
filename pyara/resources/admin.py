@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import User
-from .models import Answear
+from .models import Answer
 from .models import Question
 
 class ResourceAdmin(admin.ModelAdmin):
@@ -11,5 +11,5 @@ class ResourceAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(User)
-admin.site.register(Answear)
+admin.site.register(Answer)
 admin.site.register(Question, ResourceAdmin)
