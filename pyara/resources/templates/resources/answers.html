@@ -6,15 +6,18 @@
 
 {% block body_left %}
     {% for ans in answers %}
-        <h6>{{ ans.question }}</h6>
-        <h6>{{ ans.date }}</h6>
-        <details>
-            <summary>Show answer</summary>
-            <p>{{ ans.answer }}</p>
-        </details>
+        <h5>{{ ans.question }}</h5>
+        <h7>Answer submitted: {{ ans.date }} by {{ ans.author }}</h7>
+        <p>{{ ans.answer }}</p>
     {% endfor %}
 {% endblock %}
 
 {% block body_right %}
+    <h5> Add answer:</h5>
+      <form class="form-group" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
  {% endblock %}
 
