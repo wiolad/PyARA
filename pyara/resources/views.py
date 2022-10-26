@@ -36,16 +36,17 @@ def questions(request, question_subject):
             'form': question_form,
             })
 
-#def answer(request, question_id):
-#    """
-#    Get and add answers to a question
-#    """
-#    selected_answers = Question.objects.filter(question=question_id)
-#    answer_form = AnswearForm()
-#    return render(request, 'resources/questions.html',{
-#            'answers': selected_answers,
-#            'form': answer_form,
-#            })
+
+def answers(request, question_id):
+    """
+    Get and add answers to a question
+    """
+    selected_answers = Question.objects.filter(question=question_id)
+    answer_form = AnswearForm()
+    return render(request, 'resources/questions.html',{
+            'answers': selected_answers,
+            'form': answer_form,
+            })
 
 
 def single_question(request):
