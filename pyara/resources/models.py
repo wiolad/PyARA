@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
@@ -31,7 +32,7 @@ class Question(models.Model):
         default=GENERAL)
 
     title = models.CharField(max_length=200)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(default=timezone.now)
     slug = models.SlugField(unique=True)
     source = models.URLField()
     author = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
@@ -41,7 +42,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    date = models.DateField()
+    date = models.DateField(default=timezone.now)
     answer = models.TextField()
     source = models.URLField()
 #    drawing = models.ImageField(upload_to='drawings')
