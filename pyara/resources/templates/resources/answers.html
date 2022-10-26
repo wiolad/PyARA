@@ -5,9 +5,16 @@
 {% load crispy_forms_tags %}
 
 {% block body_left %}
+    {% for ans in answers %}
+        <h6>{{ ans.question }}</h6>
+        <h6>{{ ans.date }}</h6>
+        <details>
+            <summary>Show answer</summary>
+            <p>{{ ans.answer }}</p>
+        </details>
+    {% endfor %}
+{% endblock %}
 
- {% endblock %}
-
-{% block body_left %}
+{% block body_right %}
  {% endblock %}
 

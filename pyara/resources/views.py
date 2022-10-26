@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import Question, Answer
 
 from .forms import QuestionForm
+from .forms import AnswerForm
 
 # Create your views here.
 def index(request):
@@ -39,11 +40,11 @@ def questions(request, question_subject):
 
 def answers(request, question_id):
     """
-    Get and add answers to a question
+    Show question and answers
     """
-    selected_answers = Question.objects.filter(question=question_id)
-    answer_form = AnswearForm()
-    return render(request, 'resources/questions.html',{
+    selected_answers = Answer.objects.filter(question=question_id)
+    answer_form = AnswerForm()
+    return render(request, 'resources/answers.html',{
             'answers': selected_answers,
             'form': answer_form,
             })
