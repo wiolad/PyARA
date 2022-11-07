@@ -5,8 +5,8 @@
 {% load crispy_forms_tags %}
 
 {% block body_left %}
+    <h5>{{ question.title }}</h5>
     {% for ans in answers %}
-        <h5>{{ ans.question }}</h5>
         <h7>Answer submitted: {{ ans.date }} by {{ ans.author }}</h7>
         <p>{{ ans.answer }}</p>
     {% endfor %}
