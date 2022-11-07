@@ -1,5 +1,4 @@
 from django.shortcuts import render
-#from django.http import HttpResponse
 
 from .models import Question, Answer
 
@@ -12,7 +11,6 @@ def index(request):
     return render(request, 'resources/index.html',{
     'questions':questions
     })
-#    return HttpResponse('Welcome to PyARA - Python Amazing Resources App!')
 
 def questions(request, question_subject):
     selected_subject = Question.objects.filter(subject=question_subject)
@@ -21,7 +19,6 @@ def questions(request, question_subject):
         question_form = QuestionForm()
     else:
         question_form = QuestionForm(request.POST)
-#        AnswerFormSet = inlineformset_factory(Question, Answer, fields=('answer','date'))
         if question_form.is_valid():
             title = question_form.cleaned_data['title']
             source = question_form.cleaned_data['source']
