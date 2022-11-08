@@ -41,8 +41,8 @@ def answers(request, question_id):
     """
     selected_answers = Answer.objects.filter(question=question_id)
     selected_question = Question.objects.get(id=question_id)
-    answer_form = AnswerForm()
-    return render(request, 'resources/answers.html',{
+    answer_form = AnswerForm(initial={'question': question_id})
+    return render(request, 'resources/answers.html', {
             'answers': selected_answers,
             'question': selected_question,
             'form': answer_form,

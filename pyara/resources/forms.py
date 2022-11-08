@@ -12,4 +12,4 @@ class QuestionForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields = ['answer', 'source', 'author', 'date', 'question']
+        fields = ['question', 'answer', 'source', 'author', 'date']
