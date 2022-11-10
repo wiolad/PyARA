@@ -5,12 +5,14 @@ from .models import Question, Answer
 from .forms import QuestionForm
 from .forms import AnswerForm
 
+
 # Create your views here.
 def index(request):
     questions = Question.objects.all()
-    return render(request, 'resources/index.html',{
-    'questions':questions
+    return render(request, 'resources/index.html', {
+        'questions': questions
     })
+
 
 def questions(request, question_subject):
     selected_subject = Question.objects.filter(subject=question_subject)
@@ -24,15 +26,15 @@ def questions(request, question_subject):
             source = question_form.cleaned_data['source']
             author = question_form.cleaned_data['author']
             subject = question_form.cleaned_data['subject']
-            question, _ = Question.objects.get_or_create(title=title, source=source, author=author, subject = subject)
+            question, _ = Question.objects.get_or_create(title=title, source=source, author=author, subject=subject)
         else:
             print("NOT VALID")
 
-    return render(request, 'resources/questions.html',{
-            'questions': selected_subject,
-            'answers': selected_answers,
-            'form': question_form,
-            })
+    return render(request, 'resources/questions.html', {
+        'questions': selected_subject,
+        'answers': selected_answers,
+        'form': question_form,
+    })
 
 
 def answers(request, question_id):
@@ -49,15 +51,16 @@ def answers(request, question_id):
             author = answer_form.cleaned_data['author']
             date = answer_form.cleaned_data['date']
             drawing = answer_form.cleaned_data['drawing']
-            answer, _ = Answer.objects.get_or_create(question=question, answer=answer, source=source, author=author, date=date, drawing=drawing)
+            answer, _ = Answer.objects.get_or_create(question=question, answer=answer, source=source, author=author,
+                                                     date=date, drawing=drawing)
         else:
             print("NOT VALID")
 
     return render(request, 'resources/answers.html', {
-            'answers': selected_answers,
-            'question': selected_question,
-            'form': answer_form,
-            })
+        'answers': selected_answers,
+        'question': selected_question,
+        'form': answer_form,
+    })
 
 
 def single_question(request):
