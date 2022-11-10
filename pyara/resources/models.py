@@ -45,7 +45,7 @@ class Answer(models.Model):
     date = models.DateField(default=timezone.now)
     answer = models.TextField()
     source = models.CharField(max_length=200, blank=True)
-    drawing = models.ImageField(upload_to='images', blank=True)
+    drawing = models.ImageField(upload_to='images/', blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, blank=True, null=True, on_delete=models.SET_NULL)
 
