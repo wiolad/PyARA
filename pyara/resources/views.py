@@ -41,7 +41,7 @@ def answers(request, question_id):
     if request.method == "GET":
         answer_form = AnswerForm(initial={'question': question_id})
     else:
-        answer_form = AnswerForm(request.POST, initial={'question': question_id})
+        answer_form = AnswerForm(request.POST, request.FILES, initial={'question': question_id})
         if answer_form.is_valid():
             question = answer_form.cleaned_data['question']
             answer = answer_form.cleaned_data['answer']
@@ -52,8 +52,6 @@ def answers(request, question_id):
             answer, _ = Answer.objects.get_or_create(question=question, answer=answer, source=source, author=author, date=date, drawing=drawing)
         else:
             print("NOT VALID")
-
-            fields = ['question', 'answer', 'source', 'author', 'date', 'drawing']
 
     return render(request, 'resources/answers.html', {
             'answers': selected_answers,

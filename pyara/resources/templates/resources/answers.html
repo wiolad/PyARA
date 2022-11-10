@@ -14,7 +14,7 @@
 
 {% block body_right %}
     <h5> Add answer:</h5>
-      <form class="form-group" method="POST">
+      <form class="form-group" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }}
           <button type="submit" class="btn btn-primary">Submit</button>
