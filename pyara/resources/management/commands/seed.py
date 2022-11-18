@@ -1,29 +1,30 @@
 import requests
 from django.core.management.base import BaseCommand
-from ...models import Fish
+from ...models import Quote
 
 
-def get_fishs():
-  url = 'https://www.fishwatch.gov/api/species'
-  r = requests.get(url, headers={'Content-Type':
-    'application/json'})
-  fish = r.json()
-  return fish
+def get_quote():
+    url = 'https://programming-quotes-api.herokuapp.com/Quotes/random'
+    r = requests.get(url, headers={'Content-Type':
+                                       'application/json'})
+    quote = r.json()
+    return quote
 
-def seed_fish():
-  for i in get_fishs():
-  fish = Fish(
-    name=i["Species Name"],
-    scientific_name=i["Scientific Name"],
-  )
-  fish.save()
 
-  def clear_data():
-      Fish.objects.all().delete()
+def seed_quote():
+    random_quote = get_quote()
+    quote = Quote(
+        author=random_quote["author"],
+        en=random_quote["en"],
+    )
+    quote.save()
+
+    def clear_data():
+        Quote.objects.all().delete()
 
 
 class Command(BaseCommand):
-  def handle(self, *args, **options):
-    seed_fish()
-    # clear_data()
-    print("completed")
+    def handle(self, *args, **options):
+        seed_quote()
+        # clear_data()
+        print("completed")
