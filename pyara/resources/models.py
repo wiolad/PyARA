@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-from question_categories import *
 
 
 # Create your models here.
@@ -13,6 +12,23 @@ class User(models.Model):
 
 
 class Question(models.Model):
+    GENERAL = 'GEN'
+    BASIC = 'BAS'
+    COLLECTIONS = 'COL'
+    FUNCTION = 'FUN'
+    OOP = 'OOP'
+    FILE = 'FIL'
+    ALGORITHM = 'ALG'
+    SUBJECT_CHOICES = [
+        (GENERAL, 'General information'),
+        (BASIC, 'Basic data types and syntax'),
+        (COLLECTIONS, 'Built-in data types used to store collections of data'),
+        (FUNCTION, 'Functions'),
+        (OOP, 'Object Oriented Programming'),
+        (FILE, 'Files handling'),
+        (ALGORITHM, 'Algorithms'),
+    ]
+
     subject = models.CharField(
         max_length=3,
         choices=SUBJECT_CHOICES,
