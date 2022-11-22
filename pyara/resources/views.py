@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Question, Answer
+from .models import Question, Answer, Quote
 
 from .forms import QuestionForm
 from .forms import AnswerForm
@@ -9,8 +9,10 @@ from .forms import AnswerForm
 # Create your views here.
 def index(request):
     questions = Question.objects.all()
+    quote = Quote.objects.all()
     return render(request, 'resources/index.html', {
-        'questions': questions
+        'questions': questions,
+        'quote': quote,
     })
 
 
