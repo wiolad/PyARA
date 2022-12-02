@@ -19,12 +19,13 @@ def seed_quote():
     )
     quote.save()
 
-    def clear_data():
-        Quote.objects.all().delete()
+
+def clear_data():
+    Quote.objects.all().delete()
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
         seed_quote()
-        # clear_data()
+#        clear_data()
         print("completed")
