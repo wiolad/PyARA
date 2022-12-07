@@ -1,8 +1,8 @@
 # PyARA
 ### Python Amazing Resources App
 
-This is a Django based project that helps me to keep track of my preparation for python developer interview such as:
+This is a Django based project that helps in preparation for python developer interview such as:
 
-- Questions and answers for job interviews
+- Questions and answers about Python
 - Common python interview tasks
 - Test my knowledge - prepare a test from available questions
