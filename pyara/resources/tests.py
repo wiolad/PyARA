@@ -4,7 +4,17 @@ from .models import Question, User, Answer
 
 from django.urls import reverse
 
+
 # Test Views
+class IndexViewTest(TestCase):
+    def test_url_exists(self):
+        response = self.client.get(reverse('index-view'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('index-view'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'resources/index.html')
 
 
 class QuestionsViewTest(TestCase):
@@ -13,7 +23,8 @@ class QuestionsViewTest(TestCase):
         User.objects.create(name='jacob', email='jacob@gmail.com')
         number_of_questions = 10
         for question_id in range(number_of_questions):
-            Question.objects.create(title=f"question{question_id}", slug=f"slug_{question_id}", author=User.objects.first(), subject="GEN")
+            Question.objects.create(title=f"question{question_id}", slug=f"slug_{question_id}",
+                                    author=User.objects.first(), subject="GEN")
 
     def test_url_exists(self):
         question_subject = 'GEN'
@@ -45,3 +56,26 @@ class AnswersViewTest(TestCase):
         response = self.client.get(reverse('answers-list', args=[1]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'resources/answers.html')
+
+
+# Test Models
+class UserModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        number_of_users = 3
+        for user_id in range(number_of_users):
+            User.objects.create(name=f'name_{user_id}', email=f'user_{user_id}@gmail.com')
+
+    def test_user_creation(self):
+        user = User.objects.first()
+        self.assertTrue(isinstance(user, User))
+
+    def test_user_name_max_length(self):
+        user = User.objects.get(id=1)
+        max_length = user._meta.get_field('name').max_length
+        self.assertEqual(max_length, 100)
+
+    def test_user_string_method(self):
+        user = User.objects.get(id=1)
+        expected_string = f'User name: {user.name}'
+        self.assertEqual(str(user), expected_string)
