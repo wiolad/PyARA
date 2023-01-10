@@ -4,6 +4,16 @@
 
 {% block title %}Questions{% endblock %}
 
+{% block quotes %}
+    <div id="quote">
+    <blockquote class="blockquote pb-2">
+        <p>{{ quote.4.en }}</p>
+    </blockquote>
+    <figcaption class="blockquote-footer mb-0 font-italic">
+        {{ quote.4.author}}
+    </figcaption>
+    </div>
+{% endblock %}
 {% block body_left %}
   <div class="list-group center-block">
     <h5><a href="resources/questions" class="list-group-item list-group-item-action">Sections:</a></h5>

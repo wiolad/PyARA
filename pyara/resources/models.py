@@ -12,6 +12,22 @@ class User(models.Model):
         return f'User name: {self.name}'
 
 
+class Fish(models.Model):
+    name = models.CharField(unique=True, max_length=100)
+    scientific_name = models.CharField(unique=True, max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Quote(models.Model):
+    author = models.CharField(unique=True, max_length=100)
+    en = models.CharField(unique=True, max_length=100)
+
+    def __str__(self):
+        return self.en
+
+
 class Question(models.Model):
     GENERAL = 'GEN'
     BASIC = 'BAS'
