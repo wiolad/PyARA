@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 from django.urls import reverse
 
 
@@ -10,14 +11,6 @@ class User(models.Model):
 
     def __str__(self):
         return f'User name: {self.name}'
-
-
-class Fish(models.Model):
-    name = models.CharField(unique=True, max_length=100)
-    scientific_name = models.CharField(unique=True, max_length=100)
-
-    def __str__(self):
-        return self.name
 
 
 class Quote(models.Model):
@@ -59,6 +52,11 @@ class Question(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+    def save(self, *args, **kwargs):  # new
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 
 class Answer(models.Model):
