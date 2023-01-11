@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import User
 from .models import Answer
 from .models import Question
+from .models import Quote
 
 class ResourceAdmin(admin.ModelAdmin):
     list_display = ('title','date')
@@ -11,5 +12,6 @@ class ResourceAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(User)
+admin.site.register(Quote)
 admin.site.register(Answer)
 admin.site.register(Question, ResourceAdmin)
