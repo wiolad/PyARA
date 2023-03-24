@@ -36,8 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'resources',
+    'api',
     'crispy_forms',
+    'rest_framework',
 ]
+
+# Relies on Django permissions system, CRUD for authenticated users, read-only for anonymous
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

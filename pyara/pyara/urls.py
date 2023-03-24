@@ -21,4 +21,5 @@ from django.contrib import admin
 urlpatterns = [
                   path('', include('resources.urls')),
                   path('admin/', admin.site.urls),
+                  path('api/', include('api.urls', namespace='api')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
